@@ -93,11 +93,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Infraestrutura\HistoricoPaciente.Infra.csproj">
-      <Project>{2c1ac353-8c9e-422e-b839-c138663c2846}</Project>
-      <Name>HistoricoPaciente.Infra</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
