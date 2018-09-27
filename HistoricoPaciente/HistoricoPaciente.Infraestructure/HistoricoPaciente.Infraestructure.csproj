@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HistoricoPaciente.Infraestructure</RootNamespace>
     <AssemblyName>HistoricoPaciente.Infraestructure</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,8 +31,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.10.8\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.10.8\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,16 +66,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Domain\Base\BaseEntity.cs" />
-    <Compile Include="Domain\Entities\Historico.cs" />
-    <Compile Include="Domain\Entities\Paciente.cs" />
+    <Compile Include="Infra\DAO\PacienteDAO.cs" />
+    <Compile Include="Infra\DUMP\Historico.cs" />
+    <Compile Include="Infra\DUMP\Paciente.cs" />
+    <Compile Include="Infra\EDM\Context.cs" />
+    <Compile Include="Infra\EDM\Historico.cs">
+      <DependentUpon>Pacientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infra\EDM\Paciente.cs">
+      <DependentUpon>Pacientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infra\EDM\Pacientes.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pacientes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infra\EDM\Pacientes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pacientes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infra\EDM\Pacientes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pacientes.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Infra\Base\" />
-    <Folder Include="Infra\DAO\" />
-    <Folder Include="Infra\EDM\" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Infra\EDM\Pacientes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Pacientes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Infra\EDM\Pacientes.edmx.diagram">
+      <DependentUpon>Pacientes.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Infra\EDM\Pacientes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pacientes.edmx</DependentUpon>
+      <LastGenOutput>Pacientes.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Infra\EDM\Pacientes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pacientes.edmx</DependentUpon>
+      <LastGenOutput>Pacientes.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

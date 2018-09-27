@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HistoricoPacienteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Historico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="descricao" Type="nvarchar" MaxLength="4000" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="paciente_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="80" />
+          <Property Name="idade" Type="int" />
+          <Property Name="sexo" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK__Historico__pacie__25869641">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Historico">
+              <PropertyRef Name="paciente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HistoricoPacienteModelStoreContainer">
+          <EntitySet Name="Historico" EntityType="Self.Historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Historico__pacie__25869641" Association="Self.FK__Historico__pacie__25869641">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HistoricoPacienteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Historico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="paciente_id" Type="Int32" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Historico__pacie__25869641" FromRole="Historico" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="idade" Type="Int32" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Historico" Relationship="Self.FK__Historico__pacie__25869641" FromRole="Paciente" ToRole="Historico" />
+        </EntityType>
+        <Association Name="FK__Historico__pacie__25869641">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Historico">
+              <PropertyRef Name="paciente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HistoricoPacienteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Historico" EntityType="Self.Historico" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+          <AssociationSet Name="FK__Historico__pacie__25869641" Association="Self.FK__Historico__pacie__25869641">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HistoricoPacienteModelStoreContainer" CdmEntityContainer="HistoricoPacienteEntities">
+          <EntitySetMapping Name="Historico">
+            <EntityTypeMapping TypeName="HistoricoPacienteModel.Historico">
+              <MappingFragment StoreEntitySet="Historico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="paciente_id" ColumnName="paciente_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="HistoricoPacienteModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="idade" ColumnName="idade" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
