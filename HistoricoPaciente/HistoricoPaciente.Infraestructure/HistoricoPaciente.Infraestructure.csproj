@@ -67,8 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infra\DAO\PacienteDAO.cs" />
-    <Compile Include="Infra\DUMP\Historico.cs" />
-    <Compile Include="Infra\DUMP\Paciente.cs" />
+    <Compile Include="Infra\DUMP\PacienteDump.cs" />
+    <Compile Include="Infra\Entities\Historico.cs" />
+    <Compile Include="Infra\Entities\Paciente.cs" />
     <Compile Include="Infra\EDM\Context.cs" />
     <Compile Include="Infra\EDM\Historico.cs">
       <DependentUpon>Pacientes.tt</DependentUpon>
@@ -121,5 +122,6 @@
       <LastGenOutput>Pacientes.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

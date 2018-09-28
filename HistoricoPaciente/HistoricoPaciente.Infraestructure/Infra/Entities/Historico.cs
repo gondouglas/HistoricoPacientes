@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HistoricoPaciente.Infraestructure.Infra.DUMP
+namespace HistoricoPaciente.Infraestructure.Infra.Entities
 {
     public class Historico
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Descricao { get; set; }
         public DateTime Date { get; set; }
+
+
+        public override string ToString()
+        {
+            return Date.ToString() + Descricao.ToString();
+        }
     }
 }

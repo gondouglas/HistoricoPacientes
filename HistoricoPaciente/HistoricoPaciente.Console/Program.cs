@@ -13,17 +13,7 @@ namespace HistoricoPaciente.Console
     {
         static void Main(string[] args)
         {
-
-            //paciente.Id = 1;
-            //paciente.nome = "Douglas Gonçalves";
-            //paciente.idade = 20;
-            //paciente.sexo = "M";
-
-            PacienteDAO pacienteDAO = new PacienteDAO();
-
-            //pacienteDAO.Save(paciente);
-
-            System.Console.Write(pacienteDAO.GetAll());
+            System.Console.Write(PacienteDAO.Pacientes);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HistoricoPaciente.Infraestructure.Infra.DUMP;
+using HistoricoPaciente.Infraestructure.Infra.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace HistoricoPaciente.Infraestructure.Infra.DAO
 {
     public static class PacienteDAO
     {
-    public static List<Paciente> Pacientes { get; set; }
+        public static List<Paciente> Pacientes = PacienteDump.Init();
+
         public static List<Paciente> GetAll() {
             return Pacientes.ToList();
         }
@@ -25,6 +27,10 @@ namespace HistoricoPaciente.Infraestructure.Infra.DAO
 
         public static void Update(Paciente paciente) {
             Pacientes[Pacientes.Find(x => x.Id == paciente.Id).Id] = paciente;
+        }
+
+        public static Paciente findById(int id) {
+            return Pacientes.Find(x => x.Id == id);
         }
     }
 }
