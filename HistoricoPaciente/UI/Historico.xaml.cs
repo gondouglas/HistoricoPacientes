@@ -34,7 +34,7 @@ namespace UI
         {
             ModifyHistorico modifyHistorico = new ModifyHistorico(paciente, null);
             modifyHistorico.ShowDialog();
-            HistoricoDataGrid.ItemsSource = PacienteDAO.findById(paciente.Id).Historicos;
+            HistoricoDataGrid.Items.Refresh();
         }
 
         private void btn_up_Click(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace UI
             Historico historico = (Historico)((DataGrid)HistoricoDataGrid).SelectedItem;
             ModifyHistorico modifyHistorico = new ModifyHistorico(paciente, historico);
             modifyHistorico.ShowDialog();
-            HistoricoDataGrid.ItemsSource = PacienteDAO.findById(paciente.Id).Historicos;
+            HistoricoDataGrid.Items.Refresh();
         }
 
         private void btn_del_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace UI
             Historico historico = (Historico)((DataGrid)HistoricoDataGrid).SelectedItem;
             paciente.Historicos.Remove(historico);
             PacienteDAO.Update(paciente);
-            HistoricoDataGrid.ItemsSource = PacienteDAO.findById(paciente.Id).Historicos;
+            HistoricoDataGrid.Items.Refresh() ;
 
         }
     }

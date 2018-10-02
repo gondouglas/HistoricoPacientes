@@ -34,7 +34,7 @@ namespace UI
             Paciente paciente = (Paciente)((DataGrid)sender).CurrentItem;
             HistoricoView historicoView = new HistoricoView(paciente);
             historicoView.ShowDialog();
-            Tabela.ItemsSource = PacienteDAO.GetAll();
+            Tabela.Items.Refresh();
 
         }
 
@@ -50,14 +50,14 @@ namespace UI
             Paciente paciente = (Paciente)((DataGrid)Tabela).SelectedItem;
             ModifyPacienteView modifyPacienteView = new ModifyPacienteView(paciente);
             modifyPacienteView.ShowDialog();
-            Tabela.ItemsSource = PacienteDAO.GetAll();
+            Tabela.Items.Refresh();
         }
 
         private void btn_del_Click(object sender, RoutedEventArgs e)
         {
             Paciente paciente = (Paciente)((DataGrid)Tabela).SelectedItem;
             PacienteDAO.Remove(paciente.Id);
-            Tabela.ItemsSource = PacienteDAO.GetAll();
+            Tabela.Items.Refresh();
         }
     }
 }

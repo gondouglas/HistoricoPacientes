@@ -44,11 +44,13 @@ namespace UI
             if (txt_id.Text.Equals("0"))
             {
                 historico.Id = new Random().Next();
+                if (paciente.Historicos == null)
+                    paciente.Historicos = new List<Historico>();
                 paciente.Historicos.Add(historico);
                 PacienteDAO.Update(paciente);
             }
             else {
-                paciente.Historicos[historico.Id] = historico;
+                paciente.Historicos[paciente.Historicos.FindIndex(x => x.Id == historico.Id)] = historico;
                 PacienteDAO.Update(paciente);
             }
             Close();

@@ -40,19 +40,25 @@ namespace UI
         private void btn_salvar_Click(object sender, RoutedEventArgs e)
         {
             paciente.Id = Convert.ToInt32(txt_id.Text);
-            paciente.Idade = Convert.ToInt32(txt_idade.Text);
-            paciente.Nome = txt_Nome.Text;
-            paciente.Sexo = ((ComboBoxItem)(cmb_sexo.SelectedItem)).Tag.ToString();
+            try
+            {
+                paciente.Idade = Convert.ToInt32(txt_idade.Text);
+                paciente.Nome = txt_Nome.Text;
+                paciente.Sexo = ((ComboBoxItem)(cmb_sexo.SelectedItem)).Tag.ToString();
 
-            if (txt_id.Text.Equals("0"))
-            {
-                PacienteDAO.Add(paciente);
+                if (txt_id.Text.Equals("0"))
+                {
+                    PacienteDAO.Add(paciente);
+                }
+                else
+                {
+                    PacienteDAO.Update(paciente);
+                }
+                Close();
             }
-            else
-            {
-                PacienteDAO.Update(paciente);
+            catch {
+                MessageBox.Show("Idade tem que ser um inteiro", "Erro", MessageBoxButton.OK);
             }
-            Close();
         }
     }
 }
